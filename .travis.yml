@@ -1,0 +1,38 @@
+# 指定语言环境
+language: node_js
+
+# 指定node_js版本
+node_js:
+  - 10.16.3
+
+# 指定缓存模块，可选。缓存可加快编译速度
+cache: 
+  directories:
+    - node_modules
+
+# 项目所在分支
+branches:
+  only:
+    - blog-source
+
+install:
+  - npm install
+
+# 执行清缓存，生成网页操作
+script:
+  - hexo clean
+  - hexo generate
+
+after_script:
+  - cd ./public
+  - echo "## 个人博客：https://yacheng199306.github.io" >> README.md
+  - git init
+  - git config user.email "591707099@qq.com"
+  - git config user.name "chenyacheng"
+  - git add .
+  - git commit -m "Update docs"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+  
+env:
+ global:
+   - GH_REF: github.com/yacheng199306/yacheng199306.github.io.git
