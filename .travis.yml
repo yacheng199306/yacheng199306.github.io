@@ -25,7 +25,7 @@ script:
 
 after_script:
   - cd ./public
-  - echo "## 个人博客：https://yacheng199306.github.io" >> README.md
+  - echo "## 个人博客：https://chenyacheng.github.io" >> README.md
   - git init
   - git config user.email "591707099@qq.com"
   - git config user.name "chenyacheng"
@@ -35,4 +35,4 @@ after_script:
   
 env:
  global:
-   - GH_REF: github.com/yacheng199306/yacheng199306.github.io.git
+   - GH_REF: github.com/chenyacheng/chenyacheng.github.io.git
