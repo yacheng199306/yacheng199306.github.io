@@ -30,7 +30,7 @@ after_script:
   - git config user.email "591707099@qq.com"
   - git config user.name "chenyacheng"
   - git add .
-  - git commit -m "Travis CI Auto Builder at $(date -d '-8 hour' +'%Y-%m-%d %H:%M:%S')"
+  - git commit -m "Travis CI Auto Builder at $(date -d '+8 hour' +'%Y-%m-%d %H:%M:%S')"
   - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
   
 env:
