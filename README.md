@@ -1,6 +1,6 @@
 # Hexo Portal
 
-[![Build Status](https://travis-ci.com/yacheng199306/yacheng199306.github.io.svg?branch=blog-source)](https://travis-ci.com/yacheng199306/yacheng199306.github.io)
+[![Build Status](https://travis-ci.com/chenyacheng/chenyacheng.github.io.svg?branch=blog-source)](https://travis-ci.com/chenyacheng/chenyacheng.github.io)
 
 ## 步骤：
 ### 1. hexo clean （清除缓存文件 (db.json) 和已生成的静态文件 (public)）
