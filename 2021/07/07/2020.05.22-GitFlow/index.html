@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Git Flow流程示例代码1，创建develop分支#从master拉出develop分支git checkout -b develop master">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020.05.22-GitFlow">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;chenyacheng&#x2F;2021&#x2F;07&#x2F;07&#x2F;2020.05.22-GitFlow&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Git Flow流程示例代码1，创建develop分支#从master拉出develop分支git checkout -b develop master">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-07-07T07:11:02.780Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://github.com/chenyacheng/2021/07/07/2020.05.22-GitFlow/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>2020.05.22-GitFlow | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/chenyacheng/2021/07/07/2020.05.22-GitFlow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="chenyacheng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2020.05.22-GitFlow
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-07-07 07:11:02" itemprop="dateCreated datePublished" datetime="2021-07-07T07:11:02+00:00">2021-07-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Git-Flow流程示例代码"><a href="#Git-Flow流程示例代码" class="headerlink" title="Git Flow流程示例代码"></a>Git Flow流程示例代码</h2><p>1，创建develop分支</p><p>#从master拉出develop分支</p><p>git checkout -b develop master</p><a id="more"></a>
+
+
+<p>#发布develop分支</p>
+<p>git push -u origin develop</p>
+<p>2，创建feature分支</p>
+<p>#从develop拉出feature_v1.0功能分支</p>
+<p>git checkout -b feature_v1.0 develop</p>
+<p>#提交，发布feature_v1.0分支</p>
+<p>git commit -m “开发完啦”<br>git pull origin develop(如果多人开发)<br>git push -u origin feature_v1.0</p>
+<p>#在feature_v1.0上开发一些功能</p>
+<p>3，完成feature，合并到develop分支</p>
+<p>#切换到develop分支</p>
+<p>git checkout develop<br>git pull(多人开发安全起见要拉一下代码)</p>
+<p>#从feature分支合并到develop分支</p>
+<p>git merge –no-ff feature_v1.0</p>
+<p>#删除feature分支，也可以不删除</p>
+<p>git branch -d feature_v1.0</p>
+<p>4，开始release</p>
+<p>#从develop拉出一个release分支</p>
+<p>#可选，获取最新版本。git pull origin develop</p>
+<p>git checkout -b release_v1.0 develop</p>
+<p>#fix bugs</p>
+<p>5，完成release，合并到master分支和develop分支，在master打上tag标记</p>
+<p>#合并到master</p>
+<p>git checkout master</p>
+<p>git merge –no-ff release_v1.0</p>
+<p>#在master打tag标记</p>
+<p>git tag release1.0 master</p>
+<p>git push –tags</p>
+<p>#合并到develop</p>
+<p>git checkout develop</p>
+<p>git merge –no-ff release_v1.0</p>
+<p>6，开始hotfix</p>
+<p>#从主线master拉出一个hotfix分支</p>
+<p>#可选，获取最新版本。git pull origin master</p>
+<p>git checkout -b hotfix_v1.0.1 master</p>
+<p>7，完成hotfix，合并到master和develop，并在master上打tag。</p>
+<p>#合并hotfix_v1.0.1到master</p>
+<p>git checkout master</p>
+<p>git merge –no-ff hotfix_v1.0.1</p>
+<p>#在master打上tag</p>
+<p>git tag hotfix1.0.1 master</p>
+<p>git push –tags</p>
+<p>#合并hotfix_v1.0.1到develop</p>
+<p>git checkout develop</p>
+<p>git merge –no-ff hotfix_v1.0.1</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2021/07/07/2020.07.31-Android%E5%B8%83%E5%B1%80%EF%BC%8C%E5%B7%A6%E8%BE%B9%E7%AB%96%E7%BA%BF%EF%BC%8C%E5%8F%B3%E4%B8%8A%E8%BE%B9%E6%98%AF%E5%9B%BE%E7%89%87%EF%BC%8C%E5%8F%B3%E4%B8%8B%E8%BE%B9%E6%98%AF%E6%96%87%E5%AD%97/" rel="next" title="2020.07.31-Android布局，左边竖线，右上边是图片，右下边是文字">
+                  <i class="fa fa-chevron-left"></i> 2020.07.31-Android布局，左边竖线，右上边是图片，右下边是文字
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2021/07/07/2019.11.04-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="prev" title="个人博客">
+                  个人博客 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-Flow流程示例代码"><span class="nav-number">1.</span> <span class="nav-text">Git Flow流程示例代码</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="chenyacheng"
+    src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">chenyacheng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">chenyacheng</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
